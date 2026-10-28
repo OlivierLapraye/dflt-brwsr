@@ -1,0 +1,8 @@
+// App Intents requires a certificate-backed signature with a Team ID.
+// "Sign to Run Locally" / ad-hoc signing cannot run these Shortcuts actions.
+CODE_SIGN_STYLE = Automatic
+CODE_SIGN_IDENTITY = Apple Development
+
+// Select your team in Xcode's Signing & Capabilities editor, or set it here
+// in a local, gitignored override. No certificates or private keys belong here.
+#include? "Signing.local.xcconfig"

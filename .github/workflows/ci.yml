@@ -1,0 +1,19 @@
+name: Build and test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  macos:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test browser logic (mocked system changes)
+        run: swift test
+      - name: Build app and extract Shortcuts metadata
+        run: sh scripts/build.sh --unsigned
+      - name: Verify all actions were exported
+        env:
+          DERIVED_DATA_PATH: .build/xcode-unsigned
+        run: python3 scripts/verify-metadata.py
